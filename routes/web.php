@@ -25,7 +25,7 @@ Route::middleware(['auth'])->group(function () {
     })->name('home');
     Route::resource('users', UserController::class);
     Route::resource('soal', SoalController::class);
-
+    Route::resource('products', \App\Http\Controllers\ProductController::class);
 });
 
 // Route::get('/login', function () {

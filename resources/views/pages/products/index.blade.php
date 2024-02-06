@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Bank Soal')
+@section('title', 'Products')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -11,14 +11,14 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Bank Soal</h1>
+                <h1>Products</h1>
                 <div class="section-header-button">
-                    <a href="{{ route('soal.create') }}" class="btn btn-primary">Add New</a>
+                    <a href="{{ route('products.create') }}" class="btn btn-primary">Add New</a>
                 </div>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Soal</a></div>
-                    <div class="breadcrumb-item">All Soal</div>
+                    <div class="breadcrumb-item"><a href="#">Products</a></div>
+                    <div class="breadcrumb-item">All Products</div>
                 </div>
             </div>
             <div class="section-body">
@@ -27,9 +27,9 @@
                         @include('layouts.alert')
                     </div>
                 </div>
-                <h2 class="section-title">Soal</h2>
+                <h2 class="section-title">Products</h2>
                 <p class="section-lead">
-                    You can manage all posts, such as editing, deleting and more.
+                    You can manage all Products, such as editing, deleting and more.
                 </p>
 
 
@@ -37,7 +37,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>All Soal</h4>
+                                <h4>All Products</h4>
                             </div>
                             <div class="card-body">
                                 <div class="float-left">
@@ -49,10 +49,9 @@
                                     </select>
                                 </div>
                                 <div class="float-right">
-                                    <form method="GET" action="{{ route('soal.index') }}">
+                                    <form method="GET" action="{{ route('products.index') }}">
                                         <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Search"
-                                                name="pertanyaan">
+                                            <input type="text" class="form-control" placeholder="Search" name="name">
                                             <div class="input-group-append">
                                                 <button class="btn btn-primary"><i class="fas fa-search"></i></button>
                                             </div>
@@ -65,41 +64,42 @@
                                 <div class="table-responsive">
                                     <table class="table-striped table">
                                         <tr>
-                                            <th>id</th>
-                                            <th>Soal</th>
-                                            <th>Jawaban A</th>
-                                            <th>Jawaban B</th>
-                                            <th>Jawaban C</th>
-                                            <th>Jawaban D</th>
+                                            <th>Name</th>
+                                            <th>Deskripsi</th>
+                                            <th>Category</th>
+                                            <th>Price</th>
+                                            <th>Stock</th>
+                                            <th>Created At</th>
+                                            <th>Action</th>
                                         </tr>
-                                        @foreach ($soals as $soal)
+                                        @foreach ($products as $product)
                                             <tr>
                                                 <td>
-                                                    {{ $soal->id }}
+                                                    {{ $product->name }}
                                                 </td>
                                                 <td>
-                                                    {{ $soal->pertanyaan }}
+                                                    {{ $product->description }}
                                                 </td>
                                                 <td>
-                                                    {{ $soal->jawaban_a }}
+                                                    {{ $product->category }}
                                                 </td>
                                                 <td>
-                                                    {{ $soal->jawaban_b }}
+                                                    {{ $product->price }}
                                                 </td>
                                                 <td>
-                                                    {{ $soal->jawaban_c }}
+                                                    {{ $product->stock }}
                                                 </td>
                                                 <td>
-                                                    {{ $soal->jawaban_d }}
+                                                    {{ $product->created_at }}
                                                 </td>
                                                 <td>
-                                                    {{--  <div class="d-flex justify-content-center">
-                                                        <a href='{{ route('soal.edit', $soal->id) }}'
+                                                    <div class="d-flex justify-content-center">
+                                                        <a href='{{ route('products.edit', $product->id) }}'
                                                             class="btn btn-sm btn-info btn-icon">
-                                                            <i class="fas fa-edit"></i>Edit
-                                                        </a>  --}}
+                                                            <i class="fas fa-edit"></i>EDIT
+                                                        </a>
 
-                                                    {{--   <form action="{{ route('soals.destroy', $user->id) }}"
+                                                        <form action="{{ route('products.destroy', $product->id) }}"
                                                             method="POST" class="ml-2">
                                                             <input type="hidden" name="_method" value="DELETE">
                                                             <input type="hidden" name="_token"
@@ -107,8 +107,8 @@
                                                             <button class="btn btn-sm btn-danger btn-icon confirm-delete">
                                                                 <i class="fas fa-times mr-2"></i>DELETE
                                                             </button>
-                                                        </form>  --}}
-                                                    {{--  </div>  --}}
+                                                        </form>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -116,7 +116,7 @@
                                     </table>
                                 </div>
                                 <div class="float-right">
-                                    {{ $soals->withQueryString()->links() }}
+                                    {{ $products->withQueryString()->links() }}
                                 </div>
                             </div>
                         </div>
